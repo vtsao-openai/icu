@@ -1,0 +1,32 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "intltest_test",
+    srcs = glob(
+        [
+            "*.cpp",
+            "*.h",
+        ],
+        exclude = [
+            "messageformat2test_icu.cpp",
+        ],
+    ),
+    deps = [
+        "//icu4c/source/common:headers",
+        "//icu4c/source/i18n:headers",
+        "//icu4c/source/test/cintltst",
+        "//icu4c/source/tools/ctestfw:ctest",
+        "//icu4c/source/tools/ctestfw:testlog_h",
+        "//icu4c/source/tools/ctestfw:tstdtmod",
+        "//icu4c/source/tools/toolutil:dbgutil",
+        "//icu4c/source/tools/toolutil:filestrm",
+        "//icu4c/source/tools/toolutil:json_json",
+        "//icu4c/source/tools/toolutil:ppucd",
+        "//icu4c/source/tools/toolutil:ucbuf",
+        "//icu4c/source/tools/toolutil:udbgutil",
+        "//icu4c/source/tools/toolutil:unewdata",
+        "//icu4c/source/tools/toolutil:uparse",
+        "//icu4c/source/tools/toolutil:writesrc",
+        "//icu4c/source/tools/toolutil:xmlparser",
+    ],
+)

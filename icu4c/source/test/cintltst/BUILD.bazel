@@ -1,0 +1,22 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "cintltst",
+    srcs = glob(["*.c"]),
+    hdrs = glob(["*.h"]),
+    includes = ["."],
+    textual_hdrs = glob(["*.inc"]),
+    deps = [
+        "//icu4c/source/common:headers",
+        "//icu4c/source/i18n:headers",
+        "//icu4c/source/tools/ctestfw:ctest",
+        "//icu4c/source/tools/toolutil",
+        "//icu4c/source/tools/toolutil:filestrm",
+        "//icu4c/source/tools/toolutil:ucbuf",
+        "//icu4c/source/tools/toolutil:uoptions",
+        "//icu4c/source/tools/toolutil:uparse",
+        "//icu4c/source/tools/toolutil:writesrc",
+    ],
+)

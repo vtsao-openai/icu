@@ -1,0 +1,130 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "ctest_h",
+    hdrs = ["unicode/ctest.h"],
+    includes = ["."],
+)
+
+cc_library(
+    name = "ctest",
+    srcs = ["ctest.c"],
+    includes = ["."],
+    deps = [
+        ":ctest_h",
+        ":testtype_h",
+        "//icu4c/source/common:platform",
+        "//icu4c/source/tools/toolutil:udbgutil",
+    ],
+)
+
+cc_library(
+    name = "datamap_h",
+    hdrs = ["unicode/datamap.h"],
+    includes = ["."],
+)
+
+cc_library(
+    name = "datamap",
+    srcs = ["datamap.cpp"],
+    includes = ["."],
+    deps = [
+        ":datamap_h",
+        ":testtype_h",
+        "//icu4c/source/common:platform",
+        "//icu4c/source/tools/toolutil:udbgutil",
+    ],
+)
+
+cc_library(
+    name = "testdata_h",
+    hdrs = ["unicode/testdata.h"],
+    includes = ["."],
+)
+
+cc_library(
+    name = "testdata",
+    srcs = ["testdata.cpp"],
+    includes = ["."],
+    deps = [
+        ":datamap_h",
+        ":testdata_h",
+        ":testlog_h",
+        ":testtype_h",
+        ":tstdtmod_h",
+        "//icu4c/source/common:platform",
+        "//icu4c/source/tools/toolutil:udbgutil",
+    ],
+)
+
+cc_library(
+    name = "testlog_h",
+    hdrs = ["unicode/testlog.h"],
+    includes = ["."],
+)
+
+cc_library(
+    name = "testtype_h",
+    hdrs = ["unicode/testtype.h"],
+    includes = ["."],
+)
+
+cc_library(
+    name = "tstdtmod_h",
+    hdrs = ["unicode/tstdtmod.h"],
+    includes = ["."],
+)
+
+cc_library(
+    name = "tstdtmod",
+    srcs = ["tstdtmod.cpp"],
+    includes = ["."],
+    deps = [
+        ":datamap_h",
+        ":testdata_h",
+        ":testlog_h",
+        ":testtype_h",
+        ":tstdtmod_h",
+        "//icu4c/source/common:platform",
+        "//icu4c/source/tools/toolutil:udbgutil",
+    ],
+)
+
+cc_library(
+    name = "ucln_ct",
+    srcs = ["ucln_ct.c"],
+    includes = ["."],
+    deps = [
+        "//icu4c/source/common:platform",
+        "//icu4c/source/tools/toolutil:udbgutil",
+    ],
+)
+
+cc_library(
+    name = "uperf_h",
+    hdrs = ["unicode/uperf.h"],
+    includes = ["."],
+)
+
+cc_library(
+    name = "uperf",
+    srcs = ["uperf.cpp"],
+    includes = ["."],
+    deps = [
+        ":testtype_h",
+        ":uperf_h",
+        ":utimer_h",
+        "//icu4c/source/common:platform",
+        "//icu4c/source/tools/toolutil:ucbuf",
+        "//icu4c/source/tools/toolutil:udbgutil",
+        "//icu4c/source/tools/toolutil:uoptions",
+    ],
+)
+
+cc_library(
+    name = "utimer_h",
+    hdrs = ["unicode/utimer.h"],
+    includes = ["."],
+)
