@@ -157,6 +157,12 @@
 #   define HAVE_GETTIMEOFDAY 0
 #endif
 
+#ifdef BAZEL_CURRENT_REPOSITORY
+#include "rules_cc/cc/runfiles/runfiles.h"
+using rules_cc::cc::runfiles::Runfiles;
+#include <iostream>
+#endif
+
 U_NAMESPACE_USE
 
 /* Define the extension for data files, again... */
@@ -1485,6 +1491,12 @@ static void U_CALLCONV dataDirectoryInitFn() {
     if (getIcuDataDirectoryUnderWindowsDirectory(datadir_path_buffer, UPRV_LENGTHOF(datadir_path_buffer))) {
         path = datadir_path_buffer;
     }
+#endif
+
+#if defined(BAZEL_CURRENT_REPOSITORY) && defined(ICU_DATA_DIR_BAZEL)
+    std::unique_ptr<Runfiles> runfiles(Runfiles::Create("", BAZEL_CURRENT_REPOSITORY));
+    std::string dat_path = runfiles->Rlocation(ICU_DATA_DIR_BAZEL);
+    path = dat_path.c_str();
 #endif
 
     if(path==nullptr) {

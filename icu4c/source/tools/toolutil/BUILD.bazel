@@ -4,7 +4,7 @@
 # This Bazel build file defines targets that are dependencies for building
 # the gennorm2 and genprops binaries.
 
-load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_library")
 
 package(
     default_visibility = ["//visibility:public"],
@@ -12,9 +12,9 @@ package(
 
 cc_library(
     name = "toolutil",
-    includes = ["."],
-    hdrs = ["toolutil.h"],
     srcs = ["toolutil.cpp"],
+    hdrs = ["toolutil.h"],
+    includes = ["."],
     local_defines = [
         "U_TOOLUTIL_IMPLEMENTATION",
     ],
@@ -23,9 +23,9 @@ cc_library(
 
 cc_library(
     name = "unewdata",
-    includes = ["."],
-    hdrs = ["unewdata.h"],
     srcs = ["unewdata.cpp"],
+    hdrs = ["unewdata.h"],
+    includes = ["."],
     local_defines = [
         "U_TOOLUTIL_IMPLEMENTATION",
     ],
@@ -37,9 +37,9 @@ cc_library(
 
 cc_library(
     name = "uoptions",
-    includes = ["."],
-    hdrs = ["uoptions.h"],
     srcs = ["uoptions.cpp"],
+    hdrs = ["uoptions.h"],
+    includes = ["."],
     local_defines = [
         "U_TOOLUTIL_IMPLEMENTATION",
     ],
@@ -48,9 +48,9 @@ cc_library(
 
 cc_library(
     name = "writesrc",
-    includes = ["."],
-    hdrs = ["writesrc.h"],
     srcs = ["writesrc.cpp"],
+    hdrs = ["writesrc.h"],
+    includes = ["."],
     local_defines = [
         "U_TOOLUTIL_IMPLEMENTATION",
     ],
@@ -63,23 +63,23 @@ cc_library(
 
 cc_library(
     name = "uparse",
-    includes = ["."],
-    hdrs = ["uparse.h"],
     srcs = ["uparse.cpp"],
+    hdrs = ["uparse.h"],
+    includes = ["."],
     local_defines = [
         "U_TOOLUTIL_IMPLEMENTATION",
     ],
     deps = [
         ":filestrm",
         "//icu4c/source/common:platform",
-        ],
+    ],
 )
 
 cc_library(
     name = "filestrm",
-    includes = ["."],
-    hdrs = ["filestrm.h"],
     srcs = ["filestrm.cpp"],
+    hdrs = ["filestrm.h"],
+    includes = ["."],
     local_defines = [
         "U_TOOLUTIL_IMPLEMENTATION",
     ],
@@ -88,9 +88,9 @@ cc_library(
 
 cc_library(
     name = "ppucd",
-    includes = ["."],
-    hdrs = ["ppucd.h"],
     srcs = ["ppucd.cpp"],
+    hdrs = ["ppucd.h"],
+    includes = ["."],
     local_defines = [
         "U_TOOLUTIL_IMPLEMENTATION",
     ],
@@ -102,9 +102,9 @@ cc_library(
 
 cc_library(
     name = "denseranges",
-    includes = ["."],
-    hdrs = ["denseranges.h"],
     srcs = ["denseranges.cpp"],
+    hdrs = ["denseranges.h"],
+    includes = ["."],
     local_defines = [
         "U_TOOLUTIL_IMPLEMENTATION",
     ],
@@ -113,13 +113,118 @@ cc_library(
 
 cc_library(
     name = "collationinfo",
-    includes = ["."],
-    hdrs = ["collationinfo.h"],
     srcs = ["collationinfo.cpp"],
+    hdrs = ["collationinfo.h"],
+    includes = ["."],
     local_defines = [
         "U_TOOLUTIL_IMPLEMENTATION",
     ],
     deps = [
+        "//icu4c/source/common:platform",
+        "//icu4c/source/i18n:headers",
+    ],
+)
+
+cc_library(
+    name = "udbgutil",
+    srcs = ["udbgutil.cpp"],
+    hdrs = ["udbgutil.h"],
+    includes = ["."],
+    local_defines = [
+        "U_TOOLUTIL_IMPLEMENTATION",
+    ],
+    deps = [
+        "//icu4c/source/common:platform",
+        "//icu4c/source/i18n:headers",
+    ],
+)
+
+cc_library(
+    name = "ucbuf",
+    srcs = ["ucbuf.cpp"],
+    hdrs = ["ucbuf.h"],
+    includes = ["."],
+    local_defines = [
+        "U_TOOLUTIL_IMPLEMENTATION",
+    ],
+    deps = [
+        ":filestrm",
+        "//icu4c/source/common:platform",
+        "//icu4c/source/i18n:headers",
+    ],
+)
+
+cc_library(
+    name = "dbgutil",
+    srcs = ["dbgutil.cpp"],
+    hdrs = ["dbgutil.h"],
+    includes = ["."],
+    local_defines = [
+        "U_TOOLUTIL_IMPLEMENTATION",
+    ],
+    deps = [
+        ":udbgutil",
+        "//icu4c/source/common:platform",
+        "//icu4c/source/i18n:headers",
+    ],
+)
+
+cc_library(
+    name = "json_json",
+    hdrs = ["json-json.hpp"],
+    includes = ["."],
+    local_defines = [
+        "U_TOOLUTIL_IMPLEMENTATION",
+    ],
+    deps = [
+        "//icu4c/source/common:platform",
+        "//icu4c/source/i18n:headers",
+    ],
+)
+
+cc_library(
+    name = "xmlparser",
+    srcs = ["xmlparser.cpp"],
+    hdrs = ["xmlparser.h"],
+    includes = ["."],
+    local_defines = [
+        "U_TOOLUTIL_IMPLEMENTATION",
+    ],
+    deps = [
+        ":filestrm",
+        "//icu4c/source/common:platform",
+        "//icu4c/source/i18n:headers",
+    ],
+)
+
+cc_library(
+    name = "filetools",
+    srcs = ["filetools.cpp"],
+    hdrs = ["filetools.h"],
+    includes = ["."],
+    local_defines = [
+        "U_TOOLUTIL_IMPLEMENTATION",
+    ],
+    deps = [
+        ":filestrm",
+        "//icu4c/source/common:platform",
+        "//icu4c/source/i18n:headers",
+    ],
+)
+
+cc_library(
+    name = "pkg_genc",
+    srcs = ["pkg_genc.cpp"],
+    hdrs = ["pkg_genc.h"],
+    includes = ["."],
+    local_defines = [
+        "U_TOOLUTIL_IMPLEMENTATION",
+    ],
+    deps = [
+        ":filestrm",
+        ":filetools",
+        ":toolutil",
+        ":uoptions",
         "//icu4c/source/common:platform",
         "//icu4c/source/i18n:headers",
     ],

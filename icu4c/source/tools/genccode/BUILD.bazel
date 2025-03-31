@@ -1,0 +1,15 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "genccode",
+    srcs = [
+        "genccode.c",
+    ],
+    deps = [
+        "//icu4c/source/common:headers",
+        "//icu4c/source/tools/toolutil",
+        "//icu4c/source/tools/toolutil:filestrm",
+        "//icu4c/source/tools/toolutil:pkg_genc",
+        "//icu4c/source/tools/toolutil:uoptions",
+    ],
+)
