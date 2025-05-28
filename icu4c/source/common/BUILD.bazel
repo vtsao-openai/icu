@@ -77,7 +77,10 @@ cc_library(
         "U_COMMON_IMPLEMENTATION",
         "ICU_DATA_DIR_BAZEL=\\\"$(rlocationpath @icu_dat)\\\"",
     ],
-    linkopts = ["-ldl"],
+    linkopts = select({
+        "@platforms//os:linux": ["-ldl"],
+        "//conditions:default": [],
+    }),
 )
 
 cc_library(

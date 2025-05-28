@@ -1,5 +1,7 @@
---- icu4c/source/common/BUILD.bazel
-+++ icu4c/source/common/BUILD.bazel
+diff --git a/icu4c/source/common/BUILD.bazel b/icu4c/source/common/BUILD.bazel
+index 3ecae30c437..d566149f831 100644
+--- a/icu4c/source/common/BUILD.bazel
++++ b/icu4c/source/common/BUILD.bazel
 @@ -68,9 +68,14 @@ cc_library(
      deps = [
          ":headers",
